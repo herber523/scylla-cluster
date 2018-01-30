@@ -64,9 +64,10 @@ class ScyllaSetup:
             service_ip = socket.gethostbyname_ex('tasks.scylla')
             service_ip = service_ip[2]
             self._seeds = ','.join(service_ip)
+            self._broadcastRpcAddress = self._listenAddress
 
         args += ["--listen-address %s" % self._listenAddress,
-                 "--rpc-address %s" % self._listenAddress,
+                 "--rpc-address %s" % "0.0.0.0",
                  "--seed-provider-parameters seeds=%s" % self._seeds]
 
         if self._broadcastAddress is not None:
