@@ -2,7 +2,7 @@ version: '3'
 
 services:
   scylla:
-    image: myscylla
+    image: scylla
     ports:
         - 9042:9042
     command: --seeds auto
