@@ -66,9 +66,11 @@ class ScyllaSetup:
             self._seeds = ','.join(service_ip)
             self._broadcastRpcAddress = self._listenAddress
             self._broadcastAddress = self._listenAddress
+            args +=["--rpc-address %s" % "0.0.0.0"]
+        else:
+            args += ["--rpc-address %s" %self._listenAddress]
 
         args += ["--listen-address %s" % self._listenAddress,
-                 "--rpc-address %s" % "0.0.0.0",
                  "--seed-provider-parameters seeds=%s" % self._seeds]
 
         if self._broadcastAddress is not None:
